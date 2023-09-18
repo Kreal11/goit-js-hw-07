@@ -24,8 +24,6 @@ const galleryImages = galleryItems
 
 list.insertAdjacentHTML('afterbegin', galleryImages);
 
-// import * as basicLightbox from 'basiclightbox'
-
 const increasePic = (event) => {
   event.preventDefault();
   
