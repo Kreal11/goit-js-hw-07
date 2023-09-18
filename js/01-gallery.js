@@ -4,23 +4,42 @@ import { galleryItems } from './gallery-items.js';
 console.log(galleryItems);
 
 const list = document.querySelector('.gallery');
-let newListArray = [];
 
-const createList = galleryItems.forEach(itemOfGallery => {
-    const item = `<li class="gallery__item">
-  <a class="gallery__link" href="${itemOfGallery.original}">
-    <img
-      class="gallery__image"
-      src="${itemOfGallery.preview}"
-      data-source="large-image.jpg"
-      alt="${itemOfGallery.description}"
-    />
+const galleryImages = galleryItems
+.map(image => {
+  const galleryItem = `<li class="gallery__item">
+  <a class="gallery__link" href="${image.original}">
+  <img
+  class="gallery__image"
+  src="${image.preview}"
+  loading="lazy"
+  data-source="${image.original}"
+  alt="${image.description}"
+  />
   </a>
-</li>`
-    newListArray.push(item);
-});
-newListArray.join('');
+  </li>`;
+  return galleryItem;
+})
+.join('');
 
-list.innerHTML = newListArray;
+list.insertAdjacentHTML('afterbegin', galleryImages);
 
-link.addEventListener('click', )
+// import * as basicLightbox from 'basiclightbox'
+
+const increasePic = (event) => {
+  event.preventDefault();
+  
+  if (event.target.nodeName !== "IMG") {
+    return
+  };
+  
+  const imgSrc = event.target.dataset.source;
+  const imgAlt = event.target.alt
+  
+
+  const instance = basicLightbox.create(`<img src = "${imgSrc}" alt = "${imgAlt}" width = 800 height = 600/>`);
+  
+  instance.show();
+}
+
+list.addEventListener('click', increasePic);
