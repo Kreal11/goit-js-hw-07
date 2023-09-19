@@ -41,14 +41,13 @@ const increasePic = (event) => {
   instance.show();
 
   const pressEsc = (event) => {
-    event.preventDefault();
 
-    if (event.code === 'Escape') {
+    if (event.code !== 'Escape') return;
       instance.close();
-    }
+    document.removeEventListener('keydown', pressEsc);
   }
 
-  list.addEventListener('keydown', pressEsc);
+  document.addEventListener('keydown', pressEsc);
 
 }
 
