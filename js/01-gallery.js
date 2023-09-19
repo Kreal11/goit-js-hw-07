@@ -35,9 +35,21 @@ const increasePic = (event) => {
   const imgAlt = event.target.alt
   
 
-  const instance = basicLightbox.create(`<img src = "${imgSrc}" alt = "${imgAlt}" width = 800 height = 600/>`);
+  const instance = basicLightbox.create(`<img src = "${imgSrc}" alt = "${imgAlt}" width = 800 height = 600/>`
+  );
   
   instance.show();
+
+  const pressEsc = (event) => {
+    event.preventDefault();
+
+    if (event.code === 'Escape') {
+      instance.close();
+    }
+  }
+
+  list.addEventListener('keydown', pressEsc);
+
 }
 
 list.addEventListener('click', increasePic);
