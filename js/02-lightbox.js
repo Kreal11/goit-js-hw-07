@@ -12,7 +12,6 @@ const galleryImages = galleryItems
     <img class="gallery__image"
     src="${image.preview}" 
     loading="lazy"
-    data-source="${image.original}"
     alt="${image.description}"/>
    </a>
 </li>`;
